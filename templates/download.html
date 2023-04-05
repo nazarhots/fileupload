@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Upload Result</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+    <style>
+      body {
+        font-family: sans-serif;
+        background-image: url("https://t3.ftcdn.net/jpg/02/38/18/34/360_F_238183482_nR674OSOksAw7UQAEI56j8wBJpnPMYm0.jpg");
+        background-size: cover;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 80vh;
+      }
+      
+      span.bold {
+        font-weight: bold;
+      }
+      
+      .btn-primary {
+        margin-top: 50px;
+      }
+    </style>
+  </head>
+  
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 mx-auto">
+          <h1 class="text-center mb-5">Upload Result</h1>
+          <div class="text-center">
+            <p><span class="bold">File size:</span> {{ file_size|round(2) }} MB</p>
+            <p><span class="bold">Upload time:</span> {{ duration|round(4) }} seconds</p>
+            <p><span class="bold">Upload speed:</span> {{ upload_speed|round(2) }} MB/s</p>
+          </div>
+          <a href="{{ download_url }}" class="btn btn-primary btn-block">Download</a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
