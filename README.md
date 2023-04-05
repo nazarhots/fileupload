@@ -6,7 +6,7 @@ Before running the application, make sure you have the following software instal
 
 - *Python (3.6 or higher)*
 - *Flask (2.0.1 or higher)*
-<br>
+
 
 ## Installation
 
@@ -23,7 +23,7 @@ pip install -r requirements.txt
 ```bash   
  python3 app.py
  ```
-<br>
+
 
  ## Usage
 - Click the "Upload File" button to upload a file.
