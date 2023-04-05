@@ -1,12 +1,13 @@
-#Flask File Upload Web Application
+# Flask File Upload Web Application
 This is a simple Flask web application that allows users to upload files and download them back. The uploaded file is stored in the **'static/files'** folder. If a file with the same name already exists, it will be renamed with a unique ID to avoid overwriting.
 
-##Prerequisites
+## Prerequisites
 Before running the application, make sure you have the following software installed on your machine:
 
 - *Python (3.6 or higher)*
 - *Flask (2.0.1 or higher)*
 <br>
+
 ## Installation
 
 1. Clone the repository:
