@@ -24,16 +24,44 @@
       }
 
       .copy-link-icon {
-        cursor: pointer;
-        margin-left: 5px;
+        position: relative;
       }
+
+      .tooltip {
+        position: absolute;
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px;
+        border-radius: 5px;
+        top: 205px;
+        left: 100%;
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+      }
+
+      .tooltip.show {
+        opacity: 1;
+      }
+      
+      .download-link {
+        margin-top: 10px;
+      }
+
       #download-link {
-        max-width: 300px;
+        max-width: 400px;
         display: inline-block;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
       }
+      
+      a#download-link {
+        user-select: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+      }
+
     </style>
   </head>
   
@@ -46,7 +74,7 @@
             <p><span class="bold">File size:</span> {{ file_size|round(2) }} MB</p>
             <p><span class="bold">Upload time:</span> {{ duration|round(4) }} seconds</p>
             <p><span class="bold">Upload speed:</span> {{ upload_speed|round(2) }} MB/s</p>
-            <p><span class="bold">Download link:</span> <a id="download-link" href="{{ download_url }}">{{ download_url }}</a><i class="fas fa-copy copy-link-icon" data-clipboard-target="#download-link"></i></p>
+            <p><span class="bold">Download link:</span> <a id="download-link" href="{{ download_url }}" class="align-middle">{{ download_url }}</a><i class="fas fa-copy copy-link-icon" data-clipboard-target="#download-link"></i></p>
           </div>
           <a href="{{ download_url }}" class="btn btn-primary btn-block">Download</a>
         </div>
@@ -56,11 +84,21 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
     <script>
       var clipboard = new ClipboardJS('.copy-link-icon');
-
       clipboard.on('success', function(e) {
-        e.clearSelection();
-        alert('Link copied to clipboard!');
+        var tooltip = document.createElement("span");
+        tooltip.classList.add("tooltip");
+        tooltip.innerText = "Link copied!";
+        e.trigger.parentNode.insertBefore(tooltip, e.trigger.nextSibling);
+        setTimeout(function() {
+          tooltip.classList.add("show");
+        }, 1);
+        setTimeout(function() {
+          tooltip.classList.remove("show");
+          e.clearSelection();
+          tooltip.parentNode.removeChild(tooltip);
+        }, 1500);
       });
     </script>
+
   </body>
 </html>
