@@ -32,7 +32,7 @@ def upload():
     file_size_b = os.path.getsize(os.path.join(UPLOAD_FOLDER, filename))
     upload_speed = file_size_b / (execution_duration * 1000000)
     file_size_mb = file_size_b / 1048576
-    download_url = url_for('download', filename=filename)
+    download_url = request.host_url + url_for('download', filename=filename)
 
     return render_template('download.html', duration=execution_duration, upload_speed=upload_speed, filename=filename,
                            download_url=download_url, file_size=file_size_mb)
