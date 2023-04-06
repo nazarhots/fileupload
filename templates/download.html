@@ -84,22 +84,25 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
     <script>
-      var clipboard = new ClipboardJS('.copy-link-icon');
-      clipboard.on('success', function(e) {
-        var tooltip = document.createElement("span");
-        tooltip.classList.add("tooltip");
-        tooltip.innerText = "Link copied!";
-        e.trigger.parentNode.insertBefore(tooltip, e.trigger.nextSibling);
-        setTimeout(function() {
-          tooltip.classList.add("show");
-        }, 1);
-        setTimeout(function() {
-          tooltip.classList.remove("show");
-          e.clearSelection();
-          tooltip.parentNode.removeChild(tooltip);
-        }, 1500);
-      });
+        var clipboard = new ClipboardJS('.copy-link-icon', {
+            text: function() {
+                return $('#download-link').text();
+            }
+        });
+        clipboard.on('success', function(e) {
+            var tooltip = document.createElement("span");
+            tooltip.classList.add("tooltip");
+            tooltip.innerText = "Link copied!";
+            e.trigger.parentNode.insertBefore(tooltip, e.trigger.nextSibling);
+            setTimeout(function() {
+                tooltip.classList.add("show");
+            }, 1);
+            setTimeout(function() {
+                tooltip.classList.remove("show");
+                e.clearSelection();
+                tooltip.parentNode.removeChild(tooltip);
+            }, 1500);
+        });
     </script>
-
   </body>
 </html>
